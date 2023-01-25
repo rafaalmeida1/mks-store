@@ -2,7 +2,14 @@ import { GetStaticProps } from "next";
 import { Card } from "../components/Card";
 import axios from "axios";
 import { HomeContainer } from "../styles/pages/home";
-import { IProduct } from "../context/CartContext";
+
+export interface IProduct {
+  id: number;
+  name: string;
+  description: string;
+  photo: string;
+  price: number;
+}
 
 interface HomeProps {
   products: IProduct[]
@@ -13,7 +20,7 @@ export default function Home({products}: HomeProps) {
   return (
     <HomeContainer>
       {products.map(product => (
-        <Card product={product} />
+        <Card key={`${product.id}-${product.description}`} product={product} />
       ))}
     </HomeContainer>
   );
@@ -25,7 +32,7 @@ export const getStaticProps: GetStaticProps = async () => {
     {
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
+        "Content-Type": "application/json", 
       },
     }
   );

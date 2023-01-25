@@ -20,9 +20,10 @@ export const HeaderContainer = styled.header`
       opacity: 0.8;
     }
   }
+`;
 
-  button {
-    width: 90px;
+export const OpenCartButton = styled.button`
+  width: 90px;
     height: 45px;
     display: flex;
     justify-content: center;
@@ -47,5 +48,4 @@ export const HeaderContainer = styled.header`
         fill: ${({ theme }) => theme.blue};
       }
     }
-  }
-`;
+`

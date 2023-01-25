@@ -1,15 +1,18 @@
 import Image from "next/image";
 import { CardContainer, CardContent } from "./style";
-import image from "../../assets/apple-watch.png";
 import { ShoppingBagOpen } from "phosphor-react";
-import { IProduct } from "../../context/CartContext";
 import { formatPrice } from "../../utils/formatPrice";
+import { IProduct } from "../../pages";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 
 interface ProductCardProps {
   product: IProduct;
 }
 
 export function Card({ product }: ProductCardProps) {
+  const dispatch = useDispatch()
+
   return (
     <CardContainer>
       <CardContent>
@@ -17,13 +20,13 @@ export function Card({ product }: ProductCardProps) {
         <div>
           <strong>{product.name}</strong>
           <span>
-            {formatPrice(product.price)}
+            {formatPrice(product.price).replace(',00', '')}
           </span>
         </div>
         <p>{product.description}</p>
       </CardContent>
 
-      <button>
+      <button onClick={() => dispatch(addToCart(product))}>
         <ShoppingBagOpen size={20} weight="bold" />
         <span>Comprar</span>
       </button>
