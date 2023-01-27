@@ -27,7 +27,7 @@ export const ShoppingCartContent = styled(Dialog.Content)`
   right: 0;
   bottom: 0;
   position: fixed;
-  overflow: auto;
+  overflow: scroll;
 
   background: ${({ theme }) => theme.blue};
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);

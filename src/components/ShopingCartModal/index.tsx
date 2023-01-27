@@ -1,11 +1,11 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Minus, Plus, X } from "phosphor-react";
+import { X } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeItem } from "../../redux/cartSlice";
+import { ProductCartExtendedProps } from "../../types/product";
 import { formatPrice } from "../../utils/formatPrice";
-import { ProductCartProps } from "../Header";
 import {
   CloseModal,
   OverlayModal,
@@ -18,7 +18,7 @@ import {
 export function ShoppingCartModal() {
   const navigate = useRouter();
 
-  const cart = useSelector((state: ProductCartProps) => state.cart);
+  const cart = useSelector((state: ProductCartExtendedProps) => state.cart);
   const dispatch = useDispatch();
 
   const getTotal = () => {
@@ -46,7 +46,7 @@ export function ShoppingCartModal() {
             de compras
           </h2>
 
-          {cart?.map((item: ProductCartProps) => (
+          {cart?.map((item: ProductCartExtendedProps) => (
             <ProductInCart key={item.id}>
               <button onClick={() => dispatch(removeItem(item.id))}>
                 X

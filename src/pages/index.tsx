@@ -2,14 +2,7 @@ import { GetStaticProps } from "next";
 import { Card } from "../components/Card";
 import axios from "axios";
 import { HomeContainer } from "../styles/pages/home";
-
-export interface IProduct {
-  id: number;
-  name: string;
-  description: string;
-  photo: string;
-  price: number;
-}
+import { IProduct } from "../types/product";
 
 interface HomeProps {
   products: IProduct[]

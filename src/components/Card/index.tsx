@@ -2,9 +2,9 @@ import Image from "next/image";
 import { CardContainer, CardContent } from "./style";
 import { ShoppingBagOpen } from "phosphor-react";
 import { formatPrice } from "../../utils/formatPrice";
-import { IProduct } from "../../pages";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartSlice";
+import { IProduct } from "../../types/product";
 
 interface ProductCardProps {
   product: IProduct;

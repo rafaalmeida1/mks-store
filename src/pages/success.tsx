@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductCartProps } from "../components/Header";
 import {
   ImageContainer,
   ImagesContainer,

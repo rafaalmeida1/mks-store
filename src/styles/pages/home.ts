@@ -8,6 +8,6 @@ export const HomeContainer = styled.section`
   gap: 1.5rem;
 
   @media (max-width: 768px) {
-    padding: 18px 62px 0 62px;
+    padding: 18px 52px 0 52px;
   }
 `;

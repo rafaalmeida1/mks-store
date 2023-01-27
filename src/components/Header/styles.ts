@@ -20,15 +20,24 @@ export const HeaderContainer = styled.header`
       opacity: 0.8;
     }
   }
+
+  @media (max-width: 484px) {
+    padding: 28px 15px 27px 15px;
+  }
 `;
 
 export const OpenCartButton = styled.button`
-  width: 90px;
+    width: 90px;
     height: 45px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
+
+    position: fixed;
+    top: 2%;
+    right: 6%;
+
     border: 1px solid #000;
     border-radius: 8px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);

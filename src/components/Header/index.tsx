@@ -3,21 +3,15 @@ import { ShoppingCart } from "phosphor-react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ShoppingCartModal } from "../ShopingCartModal";
 import { useSelector } from "react-redux";
-import { IProduct } from "../../pages";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
-
-export interface ProductCartProps extends IProduct {
-  [x: string]: any;
-  quantity: number;
-}
+import { IProduct, ProductCartExtendedProps } from "../../types/product";
 
 export function Header() {
   const { pathname } = useRouter();
 
   const showCartButton = pathname !== "/success";
 
-  const cart = useSelector((state: ProductCartProps) => state.cart);
+  const cart = useSelector((state: ProductCartExtendedProps) => state.cart);
 
   const getTotalQuantity = () => {
     let total = 0;
@@ -26,8 +20,6 @@ export function Header() {
     });
     return total;
   };
-
-  useEffect(() => {});
 
   return (
     <HeaderContainer>
