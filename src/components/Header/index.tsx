@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ShoppingCartModal } from "../ShopingCartModal";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { IProduct, ProductCartExtendedProps } from "../../types/product";
+import { ProductCartExtendedProps } from "../../types/product";
 
 export function Header() {
   const { pathname } = useRouter();

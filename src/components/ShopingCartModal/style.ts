@@ -22,12 +22,13 @@ export const OverlayModal = styled(Dialog.Overlay)`
 export const ShoppingCartContent = styled(Dialog.Content)`
   min-height: 100vh;
   max-width: 486px;
+  height: 100%;
   width: 100%;
   top: 0;
   right: 0;
   bottom: 0;
   position: fixed;
-  overflow: scroll;
+  overflow: auto;
 
   background: ${({ theme }) => theme.blue};
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);
@@ -39,6 +40,8 @@ export const ShoppingCartContent = styled(Dialog.Content)`
 
   @media (max-width: 484px) {
     max-width: 90%;
+    height: 100vh;
+    overflow: scroll;
   }
 
   > div {

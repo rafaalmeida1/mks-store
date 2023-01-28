@@ -1,31 +1,47 @@
 import { GetStaticProps } from "next";
 import { Card } from "../components/Card";
-import axios from "axios";
 import { HomeContainer } from "../styles/pages/home";
 import { IProduct } from "../types/product";
+import { api } from "../lib/axios";
+import { useEffect, useState } from "react";
+import { ProductSkeleton } from "../components/ProductSkeleton";
 
 interface HomeProps {
-  products: IProduct[]
-};
+  products: IProduct[];
+}
 
-export default function Home({products}: HomeProps) {
+export default function Home({ products }: HomeProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => setIsLoading(false), 400);
+
+    return () => clearTimeout(timeOut);
+  }, []);
 
   return (
     <HomeContainer>
-      {products.map(product => (
-        <Card key={`${product.id}-${product.description}`} product={product} />
-      ))}
+      {isLoading ? (
+        <ProductSkeleton />
+      ) : (
+        products.map((product) => (
+          <Card
+            key={`${product.id}-${product.description}`}
+            product={product}
+          />
+        ))
+      )}
     </HomeContainer>
   );
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await axios.get(
-    "https://mks-challenge-api-frontend.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=ASC",
+  const response = await api.get(
+    "products?page=1&rows=8&sortBy=id&orderBy=ASC",
     {
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json", 
+        "Content-Type": "application/json",
       },
     }
   );

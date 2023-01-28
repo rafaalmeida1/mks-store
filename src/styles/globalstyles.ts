@@ -12,5 +12,15 @@ export const GlobalStyle = createGlobalStyle`
 
   * {
     box-sizing: border-box;
+    ::-webkit-scrollbar {
+      width: 0.45rem;
+    }
+    ::-webkit-scrollbar-track {
+      background: ${({ theme }) => theme["gray100"]}
+    }
+    ::-webkit-scrollbar-thumb {
+      background: ${({ theme }) => theme["blue"]};
+      border-radius: 999px;
+    }
   }
 `;
