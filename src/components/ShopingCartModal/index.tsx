@@ -3,7 +3,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { X } from "phosphor-react";
 import { useDispatch, useSelector } from "react-redux";
-import { decrementQuantity, incrementQuantity, removeItem } from "../../redux/cartSlice";
+import {
+  clearCart,
+  decrementQuantity,
+  incrementQuantity,
+  removeItem,
+} from "../../redux/cartSlice";
 import { ProductCartExtendedProps } from "../../types/product";
 import { formatPrice } from "../../utils/formatPrice";
 import {
@@ -22,14 +27,20 @@ export function ShoppingCartModal() {
   const dispatch = useDispatch();
 
   const getTotal = () => {
-    let totalQuantity = 0
-    let totalPrice = 0
-    cart.forEach(item => {
-      totalQuantity += item.quantity
-      totalPrice += item.price * item.quantity
-    })
-    return {totalPrice, totalQuantity}
-  }
+    let totalQuantity = 0;
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      totalQuantity += item.quantity;
+      totalPrice += item.price * item.quantity;
+    });
+    return { totalPrice, totalQuantity };
+  };
+
+  const navigateToSuccessPage = () => {
+    navigate.push("/success");
+    dispatch(clearCart);
+    localStorage.removeItem("persist:@mks-store:cart-items");
+  };
 
   return (
     <Dialog.Portal>
@@ -48,9 +59,7 @@ export function ShoppingCartModal() {
 
           {cart?.map((item: ProductCartExtendedProps) => (
             <ProductInCart key={item.id}>
-              <button onClick={() => dispatch(removeItem(item.id))}>
-                X
-              </button>
+              <button onClick={() => dispatch(removeItem(item.id))}>X</button>
 
               <Image src={item.photo} width={70} height={71} alt="" />
 
@@ -73,7 +82,9 @@ export function ShoppingCartModal() {
                     </button>
                   </section>
                 </div>
-                <strong>{formatPrice(item.price * item.quantity).replace(",00", "")}</strong>
+                <strong>
+                  {formatPrice(item.price * item.quantity).replace(",00", "")}
+                </strong>
               </SetQuantity>
             </ProductInCart>
           ))}
@@ -81,10 +92,12 @@ export function ShoppingCartModal() {
         <ResumeCart>
           <div>
             <strong>Total:</strong>
-            <strong>{formatPrice(getTotal().totalPrice).replace(',00', '')}</strong>
+            <strong>
+              {formatPrice(getTotal().totalPrice).replace(",00", "")}
+            </strong>
           </div>
 
-          <button onClick={() => navigate.push('/success')}>Finalizar Compra</button>
+          <button onClick={navigateToSuccessPage} disabled={cart.length <= 0}>Finalizar Compra</button>
         </ResumeCart>
       </ShoppingCartContent>
     </Dialog.Portal>

@@ -5,6 +5,7 @@ import { IProduct } from "../types/product";
 import { api } from "../lib/axios";
 import { useEffect, useState } from "react";
 import { ProductSkeleton } from "../components/ProductSkeleton";
+import { useRouter } from "next/router";
 
 interface HomeProps {
   products: IProduct[];
@@ -14,7 +15,9 @@ export default function Home({ products }: HomeProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timeOut = setTimeout(() => setIsLoading(false), 400);
+    const timeOut = setTimeout(() => {
+      setIsLoading(false);
+    }, 400);
 
     return () => clearTimeout(timeOut);
   }, []);

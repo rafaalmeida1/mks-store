@@ -306,11 +306,17 @@ export const ResumeCart = styled.div`
 
     cursor: pointer;
 
-    transition: background-image 0.5s;
+    transition: background-image 0.5s, background-color 0.2s;
 
-    &:hover {
+    &:not(:disabled):hover{
       animation: ${backgroundAnimation} 1300ms infinite ease-in-out;
       background-image: linear-gradient(90deg, #000, #111, #000);
     }
+
+    &:disabled  {
+      cursor: not-allowed;
+      background-color: ${({ theme }) => theme.gray500};
+    }
+
   }
 `;

@@ -8,22 +8,44 @@ export const SuccessContainer = styled.main`
     margin: 10rem auto;
     height: 656;
 
-    h1 {
-        font-size: 1.5rem;
+    strong {
+        font-size: 1rem;
         color: ${({theme}) => theme.black};
+        margin-top: 1rem;
     };
 
-    p {
+    img {
+        border-radius: 1000px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            scale: 1.1;
+        }
+    }
+
+    span {
         font-size: 1rem;
-        color: ${({theme}) => theme.gray300};
+        color: ${({theme}) => theme.gray500};
         max-width: 560;
         text-align: center;
-        margin-top: 2rem;
+        margin-top: 0.5rem;
         line-height: 1.4;
+
+        > a {
+        color: ${({theme}) => theme.gray500};
+        text-decoration: none;
+        font-weight: bold;
+
+        transition: color 0.2s linear;
+
+        &:hover {
+            color: ${({theme}) => theme.blue};
+        };
+    };
     };
 
-    a {
-        margin-top: 5rem;
+    > a {
+        margin-top: 3rem;
         display: block;
         font-size: 1rem;
         color: ${({theme}) => theme.blue};
@@ -34,38 +56,4 @@ export const SuccessContainer = styled.main`
           opacity: 0.8;
         };
     };
-`
-
-export const ImagesContainer = styled.section`
-    display: flex;
-    align-items: center;
-    margin-bottom: 3rem;
-
-    div + div {
-        margin-left: calc(-140px / 2)
-    }
-`
-
-export const ImageContainer = styled.div`
-    width: 140;
-    height: 140;
-    background: "linear-gradient(180deg; #1ea483 0%; #7465d4 100%)";
-    box-shadow: 0px 0px 60px rgba(0, 0, 0, 0.8);
-    border: 50%;
-    position: relative;
-    transition: all 0.2s linear;
-    scale: 0.9;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-        object-fit: cover;
-    };
-
-    &:hover {
-        z-index: 2;
-        scale: 1
-    }
 `

@@ -8,6 +8,7 @@ const nextConfig = {
   images: {
     domains: [
       "mks-sistemas.nyc3.digitaloceanspaces.com",
+      "github.com"
     ],
   },
 };
